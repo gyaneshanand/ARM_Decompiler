@@ -1,6 +1,5 @@
 //Node.java
-//suyash singh
-//2016105
+
 import java.lang.*;
 import java.util.*;
 import java.io.*;
@@ -17,3 +16,4 @@ public class Node{
 		this.operand2=operand2;
 		this.leader=leader;
 	}
+}
