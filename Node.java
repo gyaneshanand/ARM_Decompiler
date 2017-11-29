@@ -9,6 +9,7 @@ public class Node{
 	String destination;
 	boolean leader; 
 	int op_code; 
+	String label;
 	Node()
 	{
 		
@@ -23,5 +24,11 @@ public class Node{
 		this.operand1 = operand1;
 		this.operand2 = operand2;
 		this.destination = destination;
+		label="";
+	
+	}
+	public void print()
+	{
+		System.out.println(operand1+" "+operand2+" "+destination+" "+leader + " " +instruction_type+ " " +label );
 	}
 }

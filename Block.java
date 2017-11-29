@@ -3,15 +3,16 @@ import java.io.*;
 
 public class Block
 {	
-	Arraylist<Block> in_blocks;
-	Arraylist<Block> out_blocks;
-	Arraylist<Node> nodes;
-
+	ArrayList<Block> in_blocks;
+	ArrayList<Block> out_blocks;
+	ArrayList<Node> nodes;
+	String label;
 	public Block()
 	{
-		in_blocks = new Arraylist<Block>();
-		out_blocks = new Arraylist<Block>();
-		nodes = new Arraylist<Nodes>();
+		in_blocks = new ArrayList<Block>();
+		out_blocks = new ArrayList<Block>();
+		nodes = new ArrayList<Node>();
+		label = "";
 
 	}
 	public void addnode(Node n)
