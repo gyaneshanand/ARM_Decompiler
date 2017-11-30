@@ -39,10 +39,7 @@ public class Codegenerator
 		this.no_operands = n ;
 		this.inst_type = c;
 	}
-	public Instruction()
-	{
-		instruction_set = new ArrayList<Instruction>();
-	}
+	
 
 	public void instruction_generator() throws IOException,FileNotFoundException
 	{

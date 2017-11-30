@@ -29,6 +29,6 @@ public class Node{
 	}
 	public void print()
 	{
-		System.out.println(operand1+" "+operand2+" "+destination+" "+leader + " " +instruction_type+ " " +label );
+		System.out.println(operand1+" "+operand2+" "+destination+" "+leader + " " +instruction_type+ " " +label+" "+instruction_name );
 	}
 }
