@@ -42,7 +42,7 @@ public class Control_Graph
 		{
 			for(int i=0;i<block_list.get(j).nodes.size();i++)
 			{
-			block_list.get(j).nodes.get(i).print();
+				System.out.println(block_list.get(j).nodes.get(i).operand1+" "+block_list.get(j).nodes.get(i).operand2+" "+block_list.get(j).nodes.get(i).destination+" "+block_list.get(j).nodes.get(i).leader + " " +block_list.get(j).nodes.get(i).instruction_type +" "+block_list.get(j).label + " " + block_list.get(j).nodes.get(i).instruction_name);
 			}
 			System.out.println();
 		}
@@ -53,7 +53,7 @@ public class Control_Graph
 		{
 			for(int i=0;i<block_list.get(j).out_blocks.size();i++)
 			{
-				System.out.print(block_list.get(j).out_blocks.get(i).label + " "+j+" ");
+				System.out.print(block_list.get(j).out_blocks.get(i).label + " "+block_list.get(j).out_blocks.get(i).number+" ");
 			}
 			System.out.println();
 		}
@@ -86,6 +86,30 @@ public class Control_Graph
 		}
 
 	}
+
+	public static boolean Detecting_Cycle(Block base , int index)
+	{
+		boolean b = false;
+		for(int i=0;i<block_list.get(index).out_blocks.size();i++)
+		{
+			Block temp = block_list.get(index).out_blocks.get(i);
+			System.out.println(-1);
+			if(temp.number==base.number)
+			{
+				return true;
+			}
+			for(int j=0;j<block_list.size();j++)
+			{
+				System.out.println(0);
+				if(temp.number==block_list.get(j).number)
+				{
+					b = Detecting_Cycle(base , j);
+					return b;
+				}
+			}
+		}
+		return b;
+	}
 	public static void main(String [] args) throws IOException
 	{
 		FileReader fr = new FileReader("sample1.txt");
@@ -96,7 +120,7 @@ public class Control_Graph
 		String l = "";
 		while((s = br.readLine())!=null)
 		{
-			//System.out.println("A");
+			System.out.println("A");
 			StringTokenizer st = new StringTokenizer(s);
 			String type = "";
 			int op = -1;
@@ -120,7 +144,7 @@ public class Control_Graph
 				StringTokenizer st1 = new StringTokenizer(parse,",");
 				if(num==3)
 				{
-					temp.generate_node(st1.nextToken(),st1.nextToken(),st1.nextToken());
+					 temp.generate_node(st1.nextToken(),st1.nextToken(),st1.nextToken());
 				}
 				else if(num==2)
 				{
@@ -137,6 +161,7 @@ public class Control_Graph
 					t=0;
 					l="";
 				}
+				temp.instruction_name = inst;
 				player.add(temp);
 			}
 			else
@@ -148,10 +173,12 @@ public class Control_Graph
 		}
 		//print();
 		assign_leader();
+		int count=0;
 		for(int i=0;i<player.size();i++)
 		{
 			Block b = new Block();
 			b.label = player.get(i).label;
+			b.number = count;
 			b.nodes.add(player.get(i));
 			for(int j=i+1;j<player.size();j++)
 			{
@@ -166,11 +193,14 @@ public class Control_Graph
 				}
 			}
 			block_list.add(b);
+			count+=1;
 		}
 		print();
 		System.out.println();
 		print1();
 		generate_controlgraph();
 		print2();
+		//boolean b = Detecting_Cycle(block_list.get(0),0);
+		//System.out.println(b);
 	}
-}
+} 
